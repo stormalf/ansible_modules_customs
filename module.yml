@@ -1,0 +1,12 @@
+---
+- name: "simple mysql request on mediawiki db"
+  hosts: localhost
+  gather_facts: no
+  become: no
+  tasks:
+  - name: "return the number of pages in mediawiki"
+    count_page:
+      db_name: "mediawiki"
+      request: "select count(*) from page;"
+    register: result
+  - debug: var=result
