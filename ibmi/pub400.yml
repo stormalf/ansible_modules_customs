@@ -1,7 +1,7 @@
 - hosts: "{{myhosts}}"
   remote_user: ansible
   become: no
-  connection: local
+  connection: ssh
   gather_facts: "{{gather}}"
   vars:
     myhosts: ibmi
@@ -11,3 +11,27 @@
   tasks:
     - name: echo hello world
       command: echo hello world!
+
+    - name: list yum packages
+      command: /QOpenSys/pkgs/bin/yum list
+      register: result
+
+    - name: display result
+      debug:
+        var: result.stdout_lines
+
+    - name: create a result file with all yum installed packages
+      shell: echo "{{ result.stdout_lines | to_nice_yaml }}" > /tmp/result.txt
+
+    - name: Store result file into /tmp/PUB400.COM/tmp/
+      fetch:
+        src: /tmp/result.txt
+        dest: /tmp/
+
+    - name: executing system command
+      command: system "dsplibl *print"
+      register: result
+
+    - name: display result
+      debug:
+        var: result.stdout_lines
