@@ -1,0 +1,13 @@
+- hosts: "{{myhosts}}"
+  remote_user: ansible
+  become: no
+  connection: local
+  gather_facts: "{{gather}}"
+  vars:
+    myhosts: ibmi
+    gather: no
+    pkg: yum
+
+  tasks:
+    - name: echo hello world
+      command: echo hello world!
