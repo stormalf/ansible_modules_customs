@@ -40,6 +40,9 @@
         src: /tmp/result2.txt
         dest: /tmp/
 
+    - name: list of JT400.jar drivers
+      shell: find /QIBM/ProdData/HTTP/Public/jt400/lib/ -name "jt400.jar"
+
     # - name: display file
     #   shell: cat /tmp/result2.txt
     #   register: result

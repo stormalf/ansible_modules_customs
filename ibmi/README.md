@@ -10,15 +10,15 @@ first playbook connecting to PUB400.com and executing hello world!
 
 having configured the ssh keys and inventory file with correct information to connect to PUB400.COM
 
-- To execute : (replace .../hosts by your inventory file that defines the port, and other ansible ssh parameters to use)
-  ansible-playbook -i .../hosts pub400.yml
+- To execute : (replace .../hosts by your inventory file that defines the port, and other ansible ssh parameters to use) add -v to see results
+  ansible-playbook -i .../hosts pub400.yml -v
 
 # output example
 
-PLAY [ibmi] ************************************\*\*\*\*************************************\*\*\*************************************\*\*\*\*************************************
+PLAY [ibmi] ****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************\*\*\*****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************
 
-TASK [echo hello world] **********************************\*\***********************************\*\*\***********************************\*\***********************************
+TASK [echo hello world] ****************\*\*****************\*\*****************\*\*****************\*\*\*****************\*\*****************\*\*****************\*\*****************
 changed: [PUB400.COM]
 
-PLAY RECAP ************************************\*\*\*\*************************************\*\*\*\*************************************\*\*\*\*************************************
+PLAY RECAP ****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************\*\*\*\*****************
 PUB400.COM : ok=1 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
