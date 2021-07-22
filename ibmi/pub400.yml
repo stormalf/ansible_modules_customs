@@ -28,10 +28,22 @@
         src: /tmp/result.txt
         dest: /tmp/
 
-    - name: executing system command
-      command: system "dsplibl *print"
+    - name: printing the library list
+      shell: system "dsplibl *print" > /tmp/result.txt
+
+    - name: formating the result
+      shell: tail -n +4 /tmp/result.txt | sed '$d' | sed '$d' > /tmp/result2.txt
       register: result
 
-    - name: display result
-      debug:
-        var: result.stdout_lines
+    - name: retrieving the result file into linux ansible server
+      fetch:
+        src: /tmp/result2.txt
+        dest: /tmp/
+
+    # - name: display file
+    #   shell: cat /tmp/result2.txt
+    #   register: result
+
+    # - name: display result
+    #   debug:
+    #     var: result.stdout_lines
