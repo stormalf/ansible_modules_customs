@@ -10,7 +10,7 @@ It's possible to have Ansible on Windows (but not directly working in Windows). 
 - msys2 installation
 - wsl on windows
 
-WSL is more a linux environment than a windows environment. But cygwin and msys2 is more integrated with Windows. And you can easily install them on Windows and use your Windows as an Ansible server (control node).
+WSL is more a linux environment than a windows environment. But cygwin and msys2 are more integrated with Windows. And you can easily install them on Windows and use your Windows as an Ansible server (control node).
 
 Example in cygwin :
 
