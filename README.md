@@ -52,7 +52,8 @@ Example in WSL :
     greatuser@greatserver:~/ansible_modules_customs$ uname -a
     Linux greatserver 5.10.102.1-microsoft-standard-WSL2 #1 SMP Wed Mar 2 00:30:59 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
 
-I tested to download the Ansible and to change the tar to remove the symbolic link. But it struggle during execution with comma in drive letters "C:\" and impossible to use ansible-galaxy due to it and other issues.
+I tested to download the Ansible and to change the tar file to remove the symbolic link and to be able to install it on Windows. But it struggles with different issues during execution including slashes and impossible to install a collection due to comma in drive letters "C:\" and no tty and some python modules references files that doesn't exist in Windows.
+
 That's why I recommend to use one of these 2 ways if you want to use Ansible on Windows (WSL is more an embedded linux with it's own IP address).
 
 # Ansible on IBMi
@@ -70,3 +71,8 @@ The specificity on IBMi is that sometimes you need to do some actions in the sam
 An excellent IBM collection that helps you to simplify your playbooks is the ibm.power_ibmi collection : https://galaxy.ansible.com/ibm/power_ibmi
 
 You can extend the collection or create your own Ansible plugin to do what you need and what you want. It's not too hard! Think about idempotency some IBM commands doesn't manage correctly idempotency. Probably they will improve it in the future!
+
+# Skytap Ansible modules
+
+You can find interesting modules in the Skytap Ansible repository : https://github.com/skytap/ansible-skytap.git
+Skytap provides IBMi.
