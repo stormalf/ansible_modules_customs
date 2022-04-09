@@ -72,6 +72,18 @@ An excellent IBM collection that helps you to simplify your playbooks is the ibm
 
 You can extend the collection or create your own Ansible plugin to do what you need and what you want. It's not too hard! Think about idempotency some IBM commands doesn't manage correctly idempotency. Probably they will improve it in the future!
 
+Example on IBMi :
+
+    bash-5.1$ ansible --version
+    ansible 2.9.10
+    config file = None
+    configured module search path = ['/home/GREATUSER/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+    ansible python module location = /QOpenSys/pkgs/lib/python3.6/site-packages/ansible
+    executable location = /QOpenSys/pkgs/bin/ansible
+    python version = 3.6.15 (default, Dec 17 2021, 09:57:34) [GCC 6.3.0]
+    bash-5.1$ uname -a
+    OS400 WWW 4 7 007800001B91 powerpc Os
+
 # Skytap Ansible modules
 
 You can find interesting modules in the Skytap Ansible repository : https://github.com/skytap/ansible-skytap.git
