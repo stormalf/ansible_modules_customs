@@ -84,6 +84,12 @@ Example on IBMi :
     bash-5.1$ uname -a
     OS400 WWW 4 7 007800001B91 powerpc Os
 
+
+    bash-5.1$ ansible-galaxy collection install ibm.power_ibmi
+    Process install dependency map
+    Starting collection install process
+    Installing 'ibm.power_ibmi:1.7.0' to '/home/GREATUSER/.ansible/collections/ansible_collections/ibm/power_ibmi'
+
 # Skytap Ansible modules
 
 You can find interesting modules in the Skytap Ansible repository : https://github.com/skytap/ansible-skytap.git
