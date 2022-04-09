@@ -54,3 +54,19 @@ Example in WSL :
 
 I tested to download the Ansible and to change the tar to remove the symbolic link. But it struggle during execution with comma in drive letters "C:\" and impossible to use ansible-galaxy due to it and other issues.
 That's why I recommend to use one of these 2 ways if you want to use Ansible on Windows (WSL is more an embedded linux with it's own IP address).
+
+# Ansible on IBMi
+
+It's also possible to have Ansible on IBMi and using IBMi as an Ansible server (control node). Follows the pre-requisites from IBM :
+https://github.com/IBM/ansible-for-i.git
+
+To be able to run ansible-playbook command, you can run it using putty or ssh in QP2TERM or QSH. Probably need to change the path or to add ansible to the user path or creating symbolic link.
+
+The specificity on IBMi is that sometimes you need to do some actions in the same job. In this case you have 2 ways :
+
+- creating a file with CL: commands and running SQL (you can find an example in ibmi-install-yum.yml playbook in the ansible-for-i repository)
+- creating/compiling or calling a CLP that does the dependent parts
+
+An excellent IBM collection that helps you to simplify your playbooks is the ibm.power_ibmi collection : https://galaxy.ansible.com/ibm/power_ibmi
+
+You can extend the collection or create your own Ansible plugin to do what you need and what you want. It's not too hard! Think about idempotency some IBM commands doesn't manage correctly idempotency. Probably they will improve it in the future!
