@@ -1,3 +1,56 @@
 # examples using different targets/databases/os...
 
 each folder contains some playbooks example and customized modules
+
+# Ansible on windows
+
+It's possible to have Ansible on Windows (but not directly working in Windows). It exists 3 ways :
+
+- cygwin installation
+- msys2 installation
+- wsl on windows
+
+WSL is more a linux environment than a windows environment. But cygwin and msys2 is more integrated with Windows. And you can easily install them on Windows and use your Windows as an Ansible server (control node).
+
+Example in cygwin :
+
+    $ ansible --version
+    ansible 2.10.3
+    config file = /etc/ansible/ansible.cfg
+    configured module search path = ['/home/greatuser/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+    ansible python module location = /usr/local/lib/python3.8/site-packages/ansible
+    executable location = /usr/local/bin/ansible
+    python version = 3.8.12 (default, Nov 23 2021, 20:18:25) [GCC 11.2.0]
+
+    greatuser@greatserver ~
+    $ uname -a
+    CYGWIN_NT-10.0 greatserver 3.3.4(0.341/5/3) 2022-01-31 19:35 x86_64 Cygwin
+
+Example in msys2 :
+
+    $ ansible --version
+    ansible 2.9.21
+    config file = /etc/ansible/ansible.cfg
+    configured module search path = ['/home/greatuser/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+    ansible python module location = /usr/lib/python3.9/site-packages/ansible
+    executable location = /usr/bin/ansible
+    python version = 3.9.9 (main, Dec 28 2021, 11:05:23) [GCC 11.2.0]
+
+    greatuser@greatserver MSYS ~
+    $ uname -a
+    MSYS_NT-10.0-22000 greatserver 3.3.4-341.x86_64 2022-02-15 17:24 UTC x86_64 Msys
+
+Example in WSL :
+
+    $ ansible --version
+    ansible 2.10.8
+    config file = None
+    configured module search path = ['/home/greatuser/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+    ansible python module location = /usr/lib/python3/dist-packages/ansible
+    executable location = /usr/bin/ansible
+    python version = 3.9.9 (main, Dec 16 2021, 23:13:29) [GCC 11.2.0]
+    greatuser@greatserver:~/ansible_modules_customs$ uname -a
+    Linux greatserver 5.10.102.1-microsoft-standard-WSL2 #1 SMP Wed Mar 2 00:30:59 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux
+
+I tested to download the Ansible and to change the tar to remove the symbolic link. But it struggle during execution with comma in drive letters "C:\" and impossible to use ansible-galaxy due to it and other issues.
+That's why I recommend to use one of these 2 ways if you want to use Ansible on Windows (WSL is more an embedded linux with it's own IP address).
