@@ -1,0 +1,56 @@
+---
+# Description:
+# This playbook shows how to deploy a war into liberty server
+
+# You must have *ALLOBJ special authority to use this playbook (see inventory to define the profile to use
+# that should be configured with ssh
+
+# Parameters:
+# target_ibmi : replace by an ibmi host defined in the ansible inventory
+
+# Example:
+# ansible-playbook -i hosts war_install.yml -e "target_ibmi=your_ibmi"
+
+- hosts: "{{ target_ibmi }}"
+  gather_facts: false
+
+  vars:
+    srcpath: "/tmp"
+    product: "helloworld.war"
+    libertydir: "/www/YOURLIBERTY/wlp/usr/servers/YOURLIBERTY"
+    location: "/home"
+    configxml: "helloworld.xml"
+
+  tasks:
+    - name: Ensures {{location}} dir exists
+      file:
+        path: "{{location}}"
+        state: directory
+        owner: qsys
+
+    - name: Copy file from Ansible Master to target IBM i
+      copy:
+        src: "{{srcpath}}/{{product}}"
+        dest: "{{location}}"
+        owner: qsys
+
+    - name: Copy xml file from Ansible Master to target IBM i
+      copy:
+        src: "{{srcpath}}/{{configxml}"
+        dest: "{{location}}"
+        owner: qsys
+
+    - name: Update server.xml to add the new {{product}}
+      lineinfile:
+        path: "{{libertydir}}/server.xml"
+        regexp: "</server>"
+        line: '<include location="{{location}}/{{configxml}}" optional="true"/> '
+        state: present
+        backup: yes
+
+    - name: Update server.xml to add the </server> at the end
+      lineinfile:
+        path: "{{libertydir}}/server.xml"
+        insertafter: EOF
+        line: "</server>"
+        state: present

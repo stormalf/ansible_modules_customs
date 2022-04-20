@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="helloworld">
+    <application autoStart="true" context-root="/helloworld" id="helloworld" location="/home/helloworld.war" name="helloworld" type="war"/>
+</server>
